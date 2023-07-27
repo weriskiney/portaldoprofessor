@@ -1,3 +1,5 @@
+// Importar o módulo firebase/auth
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
       const turmas = {
         "Turma 1": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
@@ -38,8 +40,6 @@
       }
 	  
 	  function loginWithGoogle() {
-	    // Importar o módulo firebase/auth
-	    import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	    
 	    // Pegar uma referência ao objeto Auth
 	    const auth = getAuth();
