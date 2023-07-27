@@ -63,7 +63,20 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	        alert("Bem-vindo(a), " + (user.displayName || user.email) + "!");
 	        
 	        // Mostrar a página de avaliação se o usuário for professor ou a página de notas se o usuário for aluno
-	        // TODO: implementar essa lógica usando alguma forma de identificar a função do usuário
+	        // Verificar a função do usuário
+		      const funcao = verificarFuncao(user);
+		      
+		      // Mostrar a div correspondente à função do usuário
+		      if (funcao === "professor") {
+		        // Mostrar a div de avaliação
+		        document.getElementById("avaliacao").style.display = "block";
+		      } else if (funcao === "aluno") {
+		        // Mostrar a div de notas
+		        document.getElementById("notas").style.display = "block";
+		      } else {
+		        // Mostrar uma mensagem de erro
+		        alert("Você não tem permissão para acessar este portal.");
+		      }
 	      })
 	      .catch((error) => {
 		  // Login falhou
@@ -90,10 +103,13 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	  if (email.startsWith("weriskiney")) {
 	    // O usuário é um professor
 	    return "professor";
-	  } else {
+	  } else (email.endsWith("@ufob.edu.br")) {
 	    // O usuário é um aluno
 	    return "aluno";
-	  } 
+	  } else {	  
+	    // nenhum
+	    return "invalido";
+	  }
 	}
 
 
