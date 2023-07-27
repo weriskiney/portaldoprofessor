@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<style>
+	
+	      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+	  
+	  body {
+		font-family: Arial, sans-serif;
+		background-color: #f5f5f5;
+	  }
+
+	  h1 {
+		font-size: 2em;
+		text-align: center;
+		margin-top: 1em;
+	  }
+
+	  form {
+		margin: 2em auto;
+		padding: 1em;
+		max-width: 600px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	  }
+
+	  label {
+		display: block;
+		margin-top: 1em;
+		font-weight: bold;
+	  }
+
+	  input[type="checkbox"] {
+		margin-right: 0.5em;
+	  }
+
+	  button {
+		display: block;
+		margin: 1em auto;
+		padding: 0.5em 1em;
+		background-color: #4CAF50;
+		color: #fff;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	  }
+
+	  button:hover {
+		background-color: #339933;
+	  }
+
+	  #resultado {
+		margin-top: 1em;
+		font-weight: bold;
+	  }
+
+	  #probabilidade {
+		margin-top: 0.5em;
+		font-size: 0.9em;
+	  }
+
+	  #frase {
+		margin-top: 1em;
+		font-style: italic;
+	  }
+
+	  footer {
+		margin-top: 2em;
+		text-align: center;
+		font-size: 0.8em;
+		color: #666;
+	  }
+	</style>
+
+    <title>Portal do Professor</title>
+  </head>
+  <body>
+  <div class="container">
+    <h1>Portal do Professor</h1>
+    
+    <div id="login">
+      <button id="login-button" onclick="loginWithGoogle()">Entrar com Google</button>
+    </div>
+    
+    <div id="avaliacao" style="display: none;">
+      <h2>Avaliação dos Alunos</h2>
+      
+      <label for="turmas">Escolha a turma:</label>
+      <select id="turmas" onchange="mostrarGrupos()">
+        <option value="">Selecione uma turma</option>
+        <option value="Turma 1">Turma 1</option>
+        <option value="Turma 2">Turma 2</option>
+        <option value="Turma 3">Turma 3</option>
+      </select>
+      
+      <div id="grupos"></div>
+      
+      <br>
+      
+      <button onclick="sortearGrupo()">Sortear Grupo</button>
+      
+      <p id="resultado"></p>
+	  <p id="probabilidade"></p>
+	  <p id="frase"></p>
+    </div>
+    
+    <script type="module" src="app.js">
+
+      const turmas = {
+        "Turma 1": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
+        "Turma 2": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
+        "Turma 3": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"]
+      };
+	  
+	  const frases = [
+        "Não se preocupe com o resultado do sorteio, você já é um vencedor!"
+		];
+      
+      function mostrarGrupos() {
+        const turmaSelecionada = document.getElementById("turmas").value;
+        const grupos = turmas[turmaSelecionada];
+        let gruposHtml = "";
+        for (let i = 0; i < grupos.length; i++) {
+          gruposHtml += "<input type='checkbox' name='grupos' value='" + grupos[i] + "'>" + grupos[i] + "<br>";
+        }
+        document.getElementById("grupos").innerHTML = gruposHtml;
+      }
+      
+      function sortearGrupo() {
+        const gruposSelecionados = document.getElementsByName("grupos");
+        let grupos = [];
+        for (let i = 0; i < gruposSelecionados.length; i++) {
+          if (gruposSelecionados[i].checked) {
+            grupos.push(gruposSelecionados[i].value);
+          }
+        }
+        const grupoSorteado = grupos[Math.floor(Math.random() * grupos.length)];
+        document.getElementById("resultado").innerHTML = "Grupo sorteado: " + grupoSorteado;
+		
+		document.getElementById("probabilidade").innerHTML = "Probabilidade: " + (1 / grupos.length * 100).toFixed(2) + "%";
+		
+		const indiceFrase = Math.floor(Math.random() * frases.length);
+		document.getElementById("frase").innerHTML = frases[indiceFrase];
+
+      }
+	  
+	  function loginWithGoogle() {
+	    // Importar o módulo firebase/auth
+	    import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+	    
+	    // Pegar uma referência ao objeto Auth
+	    const auth = getAuth();
+	    
+	    // Criar uma instância do provedor do Google
+	    const provider = new GoogleAuthProvider();
+	    
+	    // Configurar as opções de login
+	    provider.setCustomParameters({
+	      prompt: "select_account"
+	    });
+	    
+	    // Fazer login com o Google usando uma janela popup
+	    signInWithPopup(auth, provider)
+	      .then((userCredential) => {
+	        // Login bem sucedido
+	        // Pegar o objeto User
+	        const user = userCredential.user;
+	        
+	        // Mostrar uma mensagem de boas-vindas com o nome ou e-mail do usuário
+	        alert("Bem-vindo(a), " + (user.displayName || user.email) + "!");
+	        
+	        // Mostrar a página de avaliação se o usuário for professor ou a página de notas se o usuário for aluno
+	        // TODO: implementar essa lógica usando alguma forma de identificar a função do usuário
+	      })
+	      .catch((error) => {
+	        // Login falhou
+	        // Pegar o código e a mensagem do erro
+	        const errorCode = error.code;
+	        const errorMessage = error.message;
+	        
+	        // Mostrar uma mensagem de erro
+	        alert("Erro ao fazer login: " + errorMessage);
+	      });
+	  }
+    </script>
+	</div class="container">
+  </body>
+</html>
+
