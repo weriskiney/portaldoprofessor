@@ -98,4 +98,4 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 // Exportar as funções e variáveis no nível superior do módulo
-export { verificarFuncao, loginWithGoogle, mostrarGrupos, sortearGrupo, turmas, frases };
+export { loginWithGoogle, mostrarGrupos, sortearGrupo, turmas, frases };
