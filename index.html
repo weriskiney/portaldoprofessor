@@ -109,7 +109,13 @@
 	  <p id="frase"></p>
     </div>
   </div class="container">
-   <script type="module" src="app.js">></script>
+   <script type="module" src="app.js">
+
+ 	import { loginWithGoogle } from "./app.js";
+   	// Adicionar um evento de clique ao botão de login
+  	document.getElementById("login-button").addEventListener("click", loginWithGoogle);
+	   
+   </script>
   </body>
 </html>
 
