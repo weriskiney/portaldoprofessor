@@ -1,5 +1,5 @@
 {
   "imports": {
-    "firebase/auth": "./node_modules/@firebase/auth/dist/index.esm.js"
+    "firebase/auth": "./node_modules/@firebase/auth-compat/dist/index.esm.js"
   }
 }
