@@ -1,4 +1,3 @@
-    <script type="module" src="app.js">
 
       const turmas = {
         "Turma 1": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
@@ -76,4 +75,3 @@
 	        alert("Erro ao fazer login: " + errorMessage);
 	      });
 	  }
-    </script>
