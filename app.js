@@ -99,16 +99,16 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	  // Pegar o e-mail do usuário
 	  const email = user.email;
 	  
-	  // Verificar se o e-mail termina com "@escola.com.br"
-	  if (email = "weriskiney.almeida@ufob.edu.br" || email = "weriskiney@gmail.com") {
+	  // Verificar 
+	if (email == "weriskiney.almeida@ufob.edu.br" || email == "weriskiney@gmail.com") {
 	    // O usuário é um professor
 	    return "professor";
-	  } else (email.endsWith("@ufob.edu.br")) {
+	  } else if (email != "weriskiney.almeida@ufob.edu.br" && email.endsWith("@ufob.edu.br")) {
 	    // O usuário é um aluno
 	    return "aluno";
-	  } else {	  
+        } else {	  
 	    // nenhum
-	    return "invalido";
+	    result = "invalido";
 	  }
 	}
 
