@@ -82,5 +82,20 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	      });
 	  }
 
+	function verificarFuncao(user) {
+	  // Pegar o e-mail do usuário
+	  const email = user.email;
+	  
+	  // Verificar se o e-mail termina com "@escola.com.br"
+	  if (email.startsWith("weriskiney")) {
+	    // O usuário é um professor
+	    return "professor";
+	  } else {
+	    // O usuário é um aluno
+	    return "aluno";
+	  } 
+	}
+
+
 // Exportar as funções e variáveis no nível superior do módulo
-export { loginWithGoogle, mostrarGrupos, sortearGrupo, turmas, frases };
+export { verificarFuncao, loginWithGoogle, mostrarGrupos, sortearGrupo, turmas, frases };
