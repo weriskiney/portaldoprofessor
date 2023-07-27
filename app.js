@@ -100,7 +100,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	  const email = user.email;
 	  
 	  // Verificar se o e-mail termina com "@escola.com.br"
-	  if (email.startsWith("weriskiney")) {
+	  if (email = "weriskiney.almeida@ufob.edu.br" || email = "weriskiney@gmail.com") {
 	    // O usuário é um professor
 	    return "professor";
 	  } else (email.endsWith("@ufob.edu.br")) {
