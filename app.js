@@ -1,17 +1,17 @@
 // Importar o módulo firebase/auth
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-      const turmas = {
+      export const turmas = {
         "Turma 1": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
         "Turma 2": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
         "Turma 3": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"]
       };
 	  
-	  const frases = [
+	export const frases = [
         "Não se preocupe com o resultado do sorteio, você já é um vencedor!"
 		];
       
-      function mostrarGrupos() {
+     export function mostrarGrupos() {
         const turmaSelecionada = document.getElementById("turmas").value;
         const grupos = turmas[turmaSelecionada];
         let gruposHtml = "";
@@ -21,7 +21,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
         document.getElementById("grupos").innerHTML = gruposHtml;
       }
       
-      function sortearGrupo() {
+      export function sortearGrupo() {
         const gruposSelecionados = document.getElementsByName("grupos");
         let grupos = [];
         for (let i = 0; i < gruposSelecionados.length; i++) {
@@ -29,7 +29,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
             grupos.push(gruposSelecionados[i].value);
           }
         }
-        const grupoSorteado = grupos[Math.floor(Math.random() * grupos.length)];
+       export  const grupoSorteado = grupos[Math.floor(Math.random() * grupos.length)];
         document.getElementById("resultado").innerHTML = "Grupo sorteado: " + grupoSorteado;
 		
 		document.getElementById("probabilidade").innerHTML = "Probabilidade: " + (1 / grupos.length * 100).toFixed(2) + "%";
@@ -66,12 +66,18 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	        // TODO: implementar essa lógica usando alguma forma de identificar a função do usuário
 	      })
 	      .catch((error) => {
-	        // Login falhou
-	        // Pegar o código e a mensagem do erro
-	        const errorCode = error.code;
-	        const errorMessage = error.message;
-	        
-	        // Mostrar uma mensagem de erro
-	        alert("Erro ao fazer login: " + errorMessage);
+		  // Login falhou
+		  // Pegar o código e a mensagem do erro
+		  const errorCode = error.code;
+		  const errorMessage = error.message;
+		
+		  // Verificar se o erro é do tipo "auth/popup-closed-by-user"
+		  if (errorCode === "auth/popup-closed-by-user") {
+		    // Mostrar uma mensagem informando que o usuário cancelou o login
+		    alert("Você cancelou o login com o Google.");
+		  } else {
+		    // Mostrar uma mensagem de erro genérica
+		    alert("Erro ao fazer login: " + errorMessage);
+		  }
 	      });
 	  }
