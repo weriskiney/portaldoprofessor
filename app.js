@@ -13,6 +13,9 @@ const firebaseConfig = {
   measurementId: "G-C7K0LG28NL"
 };
 
+//Initialize firebase app
+const app = initializeApp(firebaseConfig);
+
       const turmas = {
         "Turma 1": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
         "Turma 2": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
