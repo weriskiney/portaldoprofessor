@@ -1,0 +1,71 @@
+	      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+	  
+	  body {
+		font-family: Arial, sans-serif;
+		background-color: #f5f5f5;
+	  }
+
+	  h1 {
+		font-size: 2em;
+		text-align: center;
+		margin-top: 1em;
+	  }
+
+	  form {
+		margin: 2em auto;
+		padding: 1em;
+		max-width: 600px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	  }
+
+	  label {
+		display: block;
+		margin-top: 1em;
+		font-weight: bold;
+	  }
+
+	  input[type="checkbox"] {
+		margin-right: 0.5em;
+	  }
+
+	  button {
+		display: block;
+		margin: 1em auto;
+		padding: 0.5em 1em;
+		background-color: #4CAF50;
+		color: #fff;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	  }
+
+	  button:hover {
+		background-color: #339933;
+	  }
+
+	  #resultado {
+		margin-top: 1em;
+		font-weight: bold;
+	  }
+
+	  #probabilidade {
+		margin-top: 0.5em;
+		font-size: 0.9em;
+	  }
+
+	  #frase {
+		margin-top: 1em;
+		font-style: italic;
+	  }
+
+	  footer {
+		margin-top: 2em;
+		text-align: center;
+		font-size: 0.8em;
+		color: #666;
+	  }
