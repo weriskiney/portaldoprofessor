@@ -1,5 +1,21 @@
 // Importar o módulo firebase/auth
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth-compat";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCNts7rKe7DOdQ1QJIe8nbTw-894dWY1q4",
+  authDomain: "portal-do-professor-77742.firebaseapp.com",
+  projectId: "portal-do-professor-77742",
+  storageBucket: "portal-do-professor-77742.appspot.com",
+  messagingSenderId: "1014421614822",
+  appId: "1:1014421614822:web:d89778a834263d656c4b27",
+  measurementId: "G-C7K0LG28NL"
+};
 
       const turmas = {
         "Turma 1": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
