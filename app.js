@@ -39,7 +39,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
       }
 	  
-	  function loginWithGoogle() {
+	export function loginWithGoogle() {
 	    
 	    // Pegar uma referência ao objeto Auth
 	    const auth = getAuth();
