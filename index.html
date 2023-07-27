@@ -35,9 +35,14 @@
 	  <p id="frase"></p>
     </div>
   </div class="container">
-   <script type="module" src="app.js">
-  	document.getElementById("login-button").addEventListener("click", loginWithGoogle);	   
-   </script>
+   	<script type="module" src="app.js"></script>
+	<script type="module">
+	  // Importar a função loginWithGoogle do módulo app.js
+	  import { loginWithGoogle } from "./app.js";
+	
+	  // Adicionar um evento de clique ao botão de login
+	  document.getElementById("login-button").addEventListener("click", loginWithGoogle);
+	</script>
   </body>
 </html>
 
