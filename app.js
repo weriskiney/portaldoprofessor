@@ -112,6 +112,70 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 	  }
 	}
 
+	function pegarDados() {
+	  // Definir a URL do arquivo JSON no GitHub Pages
+	  const url = "https://seu-usuario.github.io/seu-projeto/data.json";
+	  
+	  // Fazer uma requisição GET usando a API Fetch
+	  fetch(url)
+	    .then((response) => {
+	      // Verificar se a resposta foi bem sucedida
+	      if (response.ok) {
+	        // Converter a resposta em um objeto JSON
+	        return response.json();
+	      } else {
+	        // Lançar um erro com o status da resposta
+	        throw new Error("Erro ao pegar os dados: " + response.status);
+	      }
+	    })
+	    .then((data) => {
+	      // Usar os dados do JSON para alguma finalidade
+	      // TODO: implementar essa lógica usando os dados dos professores, das turmas e dos alunos
+	    })
+	    .catch((error) => {
+	      // Mostrar uma mensagem de erro
+	      alert(error.message);
+	    });
+	}
+	
+	function enviarDados(dados) {
+	  // Definir a URL da GitHub API para atualizar o arquivo JSON no seu repositório
+	  const url = "https://api.github.com/repos/seu-usuario/seu-projeto/contents/data.json";
+	  
+	  // Definir o seu token de acesso pessoal do GitHub
+	  const token = "seu-token-de-acesso-pessoal";
+	  
+	  // Definir as opções da requisição POST usando a API Fetch
+	  const options = {
+	    method: "PUT",
+	    headers: {
+	      "Authorization": "token " + token,
+	      "Content-Type": "application/json"
+	    },
+	    body: JSON.stringify({
+	      message: "Atualizar os dados da avaliação dos alunos",
+	      content: btoa(JSON.stringify(dados)), // Codificar os dados em formato base64
+	      sha: "o-sha-do-arquivo-json" // O SHA é um identificador único do arquivo JSON no GitHub. Você pode obtê-lo usando a função pegarDados e acessando a propriedade data.sha da resposta.
+	    })
+	  };
+	  
+	  // Fazer uma requisição POST usando a API Fetch
+	  fetch(url, options)
+	    .then((response) => {
+	      // Verificar se a resposta foi bem sucedida
+	      if (response.ok) {
+	        // Mostrar uma mensagem de confirmação
+	        alert("Os dados da avaliação dos alunos foram enviados com sucesso.");
+	      } else {
+	        // Lançar um erro com o status da resposta
+	        throw new Error("Erro ao enviar os dados: " + response.status);
+	      }
+	    })
+	    .catch((error) => {
+	      // Mostrar uma mensagem de erro
+	      alert(error.message);
+	    });
+	}
 
 // Exportar as funções e variáveis no nível superior do módulo
-export { loginWithGoogle, mostrarGrupos, sortearGrupo, turmas, frases };
+export { enviarDados, pegarDados, loginWithGoogle, mostrarGrupos, sortearGrupo, turmas, frases };
