@@ -1,17 +1,17 @@
 // Importar o módulo firebase/auth
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-      export const turmas = {
+      const turmas = {
         "Turma 1": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
         "Turma 2": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"],
         "Turma 3": ["Grupo 1", "Grupo 2", "Grupo 3", "Grupo 4"]
       };
 	  
-	export const frases = [
+	const frases = [
         "Não se preocupe com o resultado do sorteio, você já é um vencedor!"
 		];
       
-     export function mostrarGrupos() {
+     function mostrarGrupos() {
         const turmaSelecionada = document.getElementById("turmas").value;
         const grupos = turmas[turmaSelecionada];
         let gruposHtml = "";
@@ -21,7 +21,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
         document.getElementById("grupos").innerHTML = gruposHtml;
       }
       
-      export function sortearGrupo() {
+      function sortearGrupo() {
         const gruposSelecionados = document.getElementsByName("grupos");
         let grupos = [];
         for (let i = 0; i < gruposSelecionados.length; i++) {
@@ -29,17 +29,17 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
             grupos.push(gruposSelecionados[i].value);
           }
         }
-       export  const grupoSorteado = grupos[Math.floor(Math.random() * grupos.length)];
+       
+	const grupoSorteado = grupos[Math.floor(Math.random() * grupos.length)];
         document.getElementById("resultado").innerHTML = "Grupo sorteado: " + grupoSorteado;
 		
 		document.getElementById("probabilidade").innerHTML = "Probabilidade: " + (1 / grupos.length * 100).toFixed(2) + "%";
 		
 		const indiceFrase = Math.floor(Math.random() * frases.length);
 		document.getElementById("frase").innerHTML = frases[indiceFrase];
-
       }
 	  
-	export function loginWithGoogle() {
+	function loginWithGoogle() {
 	    
 	    // Pegar uma referência ao objeto Auth
 	    const auth = getAuth();
@@ -81,3 +81,6 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 		  }
 	      });
 	  }
+
+// Exportar as funções e variáveis no nível superior do módulo
+export { loginWithGoogle, mostrarGrupos, sortearGrupo, turmas, frases };
