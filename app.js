@@ -1,5 +1,5 @@
 // Importar o módulo firebase/auth
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://raw.githubusercontent.com/weriskiney/portaldoprofessor/main/node_modules/%40firebase/auth-compat/dist/index.esm.js";//"./main/node_modules/@firebase/auth-compat/dist/index.esm.js"; // "firebase/auth-compat";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from './node_modules/@firebase/auth-compat/dist/index.esm.js'; // "firebase/auth-compat";
 // Import the functions you need from the SDKs you need
 
 // Your web app's Firebase configuration
