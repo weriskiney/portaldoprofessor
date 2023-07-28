@@ -1,5 +1,5 @@
 // Importar o módulo firebase/auth
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth-compat';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from '@firebase/auth-compat';
 // Import the functions you need from the SDKs you need
 
 // Your web app's Firebase configuration
